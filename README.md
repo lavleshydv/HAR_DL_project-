@@ -68,6 +68,22 @@ Dense Layers (Classification)
     • Dropout (50%) to prevent overfitting
     ↓
 Softmax Output (8 Activity Classes)
+
+## r3d_18 (ResNet3D-18) support
+
+This repository now includes optional support for the 3D ResNet-18 video backbone (`r3d_18`) via PyTorch.
+
+- To enable, install PyTorch and torchvision (they are included in `requirements.txt`).
+- Set `MODEL_BACKBONE = "r3d_18"` in `src_config.py` to mark intent (note: the training pipeline in this repo is Keras/TensorFlow by default).
+- Use the provided example to validate installation:
+
+```bash
+python examples/run_r3d_example.py
+```
+
+Notes:
+- `build_model_r3d18` returns a PyTorch `torch.nn.Module`. If you want to train/evaluate with r3d_18, you will need a PyTorch training loop and data loader (not provided here yet).
+- If you prefer staying with Keras, consider extracting features using `r3d_18` and saving them, then training the Keras head separately.
     • Probabilities for each activity
     • Pick class with highest confidence
 ```
